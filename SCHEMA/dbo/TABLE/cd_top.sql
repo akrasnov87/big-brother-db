@@ -8,8 +8,8 @@ CREATE TABLE dbo.cd_top (
 	n_task_running smallint,
 	n_mem_total integer,
 	n_mem_used integer,
-	jb_data jsonb,
-	dx_created timestamp without time zone DEFAULT now(),
+	jb_processes json,
+	dx_created timestamp with time zone DEFAULT now(),
 	c_ip character varying(15)
 );
 
@@ -40,6 +40,10 @@ COMMENT ON COLUMN dbo.cd_top.n_task_running IS 'процессы, выполня
 COMMENT ON COLUMN dbo.cd_top.n_mem_total IS 'это суммарный объем оперативной памяти сервера';
 
 COMMENT ON COLUMN dbo.cd_top.n_mem_used IS 'это объем использованной памяти';
+
+--------------------------------------------------------------------------------
+
+CREATE INDEX cd_top_c_ip_idx ON dbo.cd_top USING btree (c_ip);
 
 --------------------------------------------------------------------------------
 
