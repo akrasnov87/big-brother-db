@@ -18,14 +18,14 @@ BEGIN
 			n.c_received_name,
 			n.dx_created
 		from dbo.cd_net_log as n
-		where n.c_ip =_ip and n.dx_created between now() - interval '1 day' and now()
+		where n.c_ip = _ip and n.dx_created between now() - interval '1 day' and now()
 	)
 	SELECT 
 		avg(d.n_sent) - avg(coalesce(d.n_sent_prev, 0)) as n_sent, 
 		avg(d.n_received) - avg(coalesce(d.n_received_prev, 0)) as n_received,
 		max(d.dx_created) as dx_created 
 	FROM items as d
-	where d.n_sent > d.n_sent_prev
+	where d.n_sent > d.n_sent_prev and d.n_received > d.n_received_prev
 	group by date_part('hour', d.dx_created)
 	order by max(d.dx_created);
 END
