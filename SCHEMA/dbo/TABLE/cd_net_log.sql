@@ -35,5 +35,9 @@ COMMENT ON COLUMN dbo.cd_net_log.n_rate IS 'Средняя скорость';
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_net_log_dx_created_idx ON dbo.cd_net_log USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_net_log
 	ADD CONSTRAINT net_log_pkey PRIMARY KEY (id);

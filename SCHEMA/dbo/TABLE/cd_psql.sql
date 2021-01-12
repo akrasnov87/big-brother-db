@@ -23,5 +23,9 @@ COMMENT ON TABLE dbo.cd_psql IS 'Транзакции';
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_psql_dx_created_idx ON dbo.cd_psql USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_psql
 	ADD CONSTRAINT cd_psql_pkey PRIMARY KEY (id);

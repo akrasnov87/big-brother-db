@@ -35,5 +35,9 @@ COMMENT ON COLUMN dbo.cd_df.n_use IS 'Use%';
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_df_dx_created_idx ON dbo.cd_df USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_df
 	ADD CONSTRAINT cd_df_pkey PRIMARY KEY (id);

@@ -47,5 +47,9 @@ CREATE INDEX cd_top_c_ip_idx ON dbo.cd_top USING btree (c_ip);
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_top_dx_created_idx ON dbo.cd_top USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_top
 	ADD CONSTRAINT cd_top_pkey PRIMARY KEY (id);

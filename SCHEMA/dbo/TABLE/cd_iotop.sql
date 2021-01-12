@@ -36,5 +36,9 @@ COMMENT ON COLUMN dbo.cd_iotop.n_kb_wrtn IS 'количество записан
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_iotop_dx_created_idx ON dbo.cd_iotop USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_iotop
 	ADD CONSTRAINT cd_iotop_pkey PRIMARY KEY (id);

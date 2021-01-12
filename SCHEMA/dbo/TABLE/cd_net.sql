@@ -28,5 +28,9 @@ COMMENT ON COLUMN dbo.cd_net.n_received IS 'получено';
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_net_dx_created_idx ON dbo.cd_net USING btree (dx_created);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_net
 	ADD CONSTRAINT net_pkey PRIMARY KEY (id);
