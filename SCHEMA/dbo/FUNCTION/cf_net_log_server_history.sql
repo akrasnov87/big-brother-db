@@ -25,7 +25,7 @@ BEGIN
 		avg(d.n_received) - avg(coalesce(d.n_received_prev, 0)) as n_received,
 		max(d.dx_created) as dx_created 
 	FROM items as d
-	where d.n_sent > d.n_sent_prev
+	where d.n_sent > d.n_sent_prev and d.n_received > d.n_received_prev
 	group by date_part('day', d.dx_created), date_part('hour', d.dx_created)
 	order by max(d.dx_created);
 END

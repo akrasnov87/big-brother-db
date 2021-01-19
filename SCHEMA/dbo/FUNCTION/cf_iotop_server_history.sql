@@ -20,10 +20,10 @@ BEGIN
 			coalesce(LAG (d.n_kb_wrtn, 1) over(order by d.dx_created), 0) as n_kb_wrtn_prev,
 			d.dx_created
 		from dbo.cd_iotop as d
-		where d.c_ip =_ip and d.c_device = _disk and d.dx_created between now() - interval '7 day' and now()
+		where d.c_ip = _ip and d.c_device = _disk and d.dx_created between now() - interval '7 day' and now()
 	)
 	SELECT max(d.c_device), avg(d.n_tps), avg(d.n_kb_read), avg(d.n_kb_wrtn), max(d.dx_created) FROM items as d
-	where d.n_kb_read_current > d.n_kb_read_prev and d.n_kb_wrtn_current > d.n_kb_wrtn_prev
+	where d.n_kb_read_current > d.n_kb_read_prev and d.n_kb_read_prev != 0 and d.n_kb_wrtn_current > d.n_kb_wrtn_prev and d.n_kb_wrtn_prev != 0
 	group by date_part('day', d.dx_created), date_part('hour', d.dx_created)
 	order by max(d.dx_created);
 END
