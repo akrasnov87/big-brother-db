@@ -19,7 +19,7 @@ BEGIN
 		group by p.dx_created
 	)
 	SELECT 
-		(avg(d.n_xact_commit) - avg(coalesce(d.n_xact_commit_prev, 0))) / 100 as n_xact_commit, 
+		(sum(d.n_xact_commit) - sum(coalesce(d.n_xact_commit_prev, 0))) / 100 as n_xact_commit, 
 		avg(d.n_numbackends) as n_numbackends,
 		max(d.dx_created) as dx_created 
 	FROM items as d

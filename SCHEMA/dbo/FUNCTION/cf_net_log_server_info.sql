@@ -21,8 +21,8 @@ BEGIN
 		where n.c_ip = _ip and n.dx_created between now() - interval '1 day' and now()
 	)
 	SELECT 
-		avg(d.n_sent) - avg(coalesce(d.n_sent_prev, 0)) as n_sent, 
-		avg(d.n_received) - avg(coalesce(d.n_received_prev, 0)) as n_received,
+		sum(d.n_sent) - sum(coalesce(d.n_sent_prev, 0)) as n_sent, 
+		sum(d.n_received) - sum(coalesce(d.n_received_prev, 0)) as n_received,
 		max(d.dx_created) as dx_created 
 	FROM items as d
 	where d.n_sent > d.n_sent_prev and d.n_received > d.n_received_prev
