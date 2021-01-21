@@ -10,10 +10,10 @@ CREATE OR REPLACE FUNCTION dbo.cf_net_log_server_history(_ip text) RETURNS TABLE
 BEGIN
 	RETURN QUERY with items as (
 		select 
-			CASE WHEN n.c_sent_name = 'GiB' THEN n.n_sent * 1024 ELSE n.n_sent END as n_sent,
-			LAG(CASE WHEN n.c_sent_name = 'GiB' THEN n.n_sent * 1024 ELSE n.n_sent END, 1) over(order by n.dx_created) as n_sent_prev,
-			CASE WHEN n.c_received_name = 'GiB' THEN n.n_received * 1024 ELSE n.n_received END as n_received,
-			LAG(CASE WHEN n.c_received_name = 'GiB' THEN n.n_received * 1024 ELSE n.n_received END, 1) over(order by n.dx_created) as n_received_prev,
+			CASE WHEN n.c_sent_name != 'GiB' THEN n.n_sent / 1024 ELSE n.n_sent END as n_sent,
+			LAG(CASE WHEN n.c_sent_name != 'GiB' THEN n.n_sent / 1024 ELSE n.n_sent END, 1) over(order by n.dx_created) as n_sent_prev,
+			CASE WHEN n.c_received_name != 'GiB' THEN n.n_received / 1024 ELSE n.n_received END as n_received,
+			LAG(CASE WHEN n.c_received_name != 'GiB' THEN n.n_received / 1024 ELSE n.n_received END, 1) over(order by n.dx_created) as n_received_prev,
 			n.c_sent_name,
 			n.c_received_name,
 			n.dx_created

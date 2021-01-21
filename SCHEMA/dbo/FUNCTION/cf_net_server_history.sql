@@ -10,8 +10,8 @@ CREATE OR REPLACE FUNCTION dbo.cf_net_server_history(_ip text) RETURNS TABLE(n_s
 BEGIN
 	RETURN QUERY with items as (
 		select 
-			CASE WHEN n.c_sent_name != 'kbit/s' THEN n.n_sent * 1024 ELSE n.n_sent END as n_sent,
-			CASE WHEN n.c_received_name != 'kbit/s' THEN n.n_received * 1024 ELSE n.n_received END as n_received,
+			CASE WHEN n.c_sent_name = 'kbit/s' THEN n.n_sent / 1024 ELSE n.n_sent END as n_sent,
+			CASE WHEN n.c_received_name = 'kbit/s' THEN n.n_received / 1024 ELSE n.n_received END as n_received,
 			n.c_sent_name,
 			n.c_received_name,
 			n.dx_created

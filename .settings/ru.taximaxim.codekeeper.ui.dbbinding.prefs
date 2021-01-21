@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-prefLastDbStore=postgres@dev-db-v-09/big-brother
+prefLastDbStore=postgres@dev-ws-v-07/big-brother
+prefLastDbStoreEditor=postgres@dev-ws-v-07/big-brother-db

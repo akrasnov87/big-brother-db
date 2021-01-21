@@ -5,7 +5,7 @@ CREATE OR REPLACE FUNCTION dbo.sf_remove_outdated() RETURNS void
 * системная функция должна выполнять от postgres
 */
 DECLARE
-    _n_val      integer = 14;
+    _n_val      integer = 30;
     _d_data     timestamptz = date_trunc('day', now()) + '1 day'::interval; -- начало следующего дня
 	_dg_cnt		integer; --diagnostic
 	_dg_text	text = '';
