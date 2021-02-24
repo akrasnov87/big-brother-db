@@ -40,5 +40,9 @@ CREATE INDEX cd_iotop_dx_created_idx ON dbo.cd_iotop USING btree (dx_created);
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_iotop_c_ip_c_device_idx ON dbo.cd_iotop USING btree (c_ip, c_device);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_iotop
 	ADD CONSTRAINT cd_iotop_pkey PRIMARY KEY (id);

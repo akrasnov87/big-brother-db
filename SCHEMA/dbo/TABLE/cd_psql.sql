@@ -27,5 +27,9 @@ CREATE INDEX cd_psql_dx_created_idx ON dbo.cd_psql USING btree (dx_created);
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_psql_c_ip_c_dat_name ON dbo.cd_psql USING btree (c_ip, c_datname);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_psql
 	ADD CONSTRAINT cd_psql_pkey PRIMARY KEY (id);

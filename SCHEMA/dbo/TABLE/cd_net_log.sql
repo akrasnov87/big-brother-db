@@ -39,5 +39,9 @@ CREATE INDEX cd_net_log_dx_created_idx ON dbo.cd_net_log USING btree (dx_created
 
 --------------------------------------------------------------------------------
 
+CREATE INDEX cd_net_log_c_ip ON dbo.cd_net_log USING btree (c_ip);
+
+--------------------------------------------------------------------------------
+
 ALTER TABLE dbo.cd_net_log
 	ADD CONSTRAINT net_log_pkey PRIMARY KEY (id);
